@@ -131,11 +131,12 @@ function calculateProbability(word,language,training){
     //      YOUR CODE
     // ----------------------------------------------------------             
 
-
+    var wordProability = wordCountInLanguage(word, language) / training.docCounts[language]
     // probability that word is not in language
     // ----------------------------------------------------------
     //      YOUR CODE
-    // ----------------------------------------------------------             
+    // ----------------------------------------------------------    
+    var wordNotProbability = wordNotInLanguageCount(word, language)/ training.docNotInCounts[language];         
 
     // probability that document is in a "language" given that "word" is in it
     // e.g. probability that document is french given that "bonjour" is in it
@@ -144,6 +145,7 @@ function calculateProbability(word,language,training){
     //      YOUR CODE
     // ----------------------------------------------------------                
 
+    var probability = wordProability/ (wordProability + wordNotProbability);
 
     // avoid 0 and 1 for later log calculations
     if (probability === 0) probability = 0.01;
